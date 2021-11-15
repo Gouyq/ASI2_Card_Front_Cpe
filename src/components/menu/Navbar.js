@@ -32,18 +32,10 @@ import '../../assets/Semantic-UI-CSS-master/semantic.css'
                 </div>
             </h3>
             <nav className="navMenu header ">
-                <a>
                   <Link to="/">Home</Link>
-                </a>
-                <a>
                   <Link to="/buy">Buy</Link>
-                </a>
-                <a>
                   <Link to="/sell">Sell</Link>
-                </a>
-                <a>
                   <Link to="/play">Play</Link>
-                </a>
             </nav>
             <h3 className="ui floated header user-navbar">
                 <i className="user circle outline icon"></i>

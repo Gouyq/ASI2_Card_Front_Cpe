@@ -20,27 +20,5 @@
         "attack" : 50,
         "price" : 5000
         
-    },
-    {
-        "name" : "Hulk",
-        "description" : "Très fort",
-        "family" : "Monstre vert",
-        "hp" : 500,
-        "energy" : 50,
-        "defense" : 50,
-        "attack" : 50,
-        "price" : 5000
-        
-    },
-    {
-        "name" : "Hulk",
-        "description" : "Très fort",
-        "family" : "Monstre vert",
-        "hp" : 500,
-        "energy" : 50,
-        "defense" : 50,
-        "attack" : 50,
-        "price" : 5000
-        
     }
 ]

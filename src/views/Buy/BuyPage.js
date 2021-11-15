@@ -1,8 +1,6 @@
+import { CardTab } from "../../components/card/CardTab"
+import cards from '../../assets/json/card.json'
+
 export const BuyPage = (props) => {
-    return (
-        <div>
-            
-            BuyPage
-        </div>
-        )
+    return <CardTab cards={cards}></CardTab>
 }

@@ -31,6 +31,7 @@ ul {
 .navMenu {
     align-self: center;
     width: 60%;
+    text-align: center;
 }
 
 .navMenu a {

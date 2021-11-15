@@ -1,3 +1,5 @@
+import { CardCell } from './CardCell'
+
 export const CardTab = (props) => {
     
     return (
@@ -16,7 +18,8 @@ export const CardTab = (props) => {
             </tr>
         </thead>
         <tbody>
-            
+            {props.cards
+                .map(card => <CardCell card={card}/>)}
         </tbody>
     </table>
     )
