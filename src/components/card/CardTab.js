@@ -1,4 +1,5 @@
 export const CardTab = (props) => {
+    
     return (
         <table class="ui selectable celled table" id="cardListId">
         <thead>
