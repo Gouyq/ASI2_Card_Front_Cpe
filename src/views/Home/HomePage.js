@@ -1,8 +1,9 @@
+import logo from '../../assets/images/logoCS.jpg';
+
 export const HomePage = (props) => {
     return (
     <div>
-        <img src="../../assets/images/logoCS.jpg"/>
-        HomePage
+        <img src={logo} />
     </div>
     )
 }
