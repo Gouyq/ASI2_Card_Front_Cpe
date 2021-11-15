@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { UserRegister } from "../../models/UserRegister"
 
 export const UserFormRegister = (props) => {
 
@@ -10,12 +11,7 @@ export const UserFormRegister = (props) => {
 
     const handleSubmit = (event) => {
         if(lastName && surName && email && login && password) {
-            let user = new Object()
-            user.lastName = lastName
-            user.surName = surName
-            user.email = email
-            user.login = login
-            user.password = password
+            let user = new UserRegister(lastName, surName, email, login, password)
 
             let userJSON = JSON.stringify(user)
 

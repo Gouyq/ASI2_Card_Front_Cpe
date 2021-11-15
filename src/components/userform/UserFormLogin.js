@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { UserLogin } from '../../models/UserLogin'
 
 export const UserFormLogin = (props) => {
 
@@ -7,9 +8,7 @@ export const UserFormLogin = (props) => {
 
     const handleSubmit = (event) => {
         if(login && password) {
-            let user = new Object()
-            user.login = login
-            user.password = password
+            let user = new UserLogin(login, password)
 
             let userJSON = JSON.stringify(user)
 
