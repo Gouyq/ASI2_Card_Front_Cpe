@@ -10,30 +10,49 @@ import { HomePage } from "../../views/Home/HomePage";
 import { PlayPage } from "../../views/Play/PlayPage";
 import { SellPage } from "../../views/Sell/SellPage";
 
+import './Navbar.css'
+import 'fontsource-roboto';
+import '../../assets/Semantic-UI-CSS-master/semantic.css'
+
 
   export const Navbar = function(props) {
+    const user = {
+      name: 'Vincent Couturier',
+      price: 5000
+    }
     return (
       <Router>
-        <div>
-            toto
-            50 balles
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/buy">Buy</Link>
-              </li>
-              <li>
-                <Link to="/sell">Sell</Link>
-              </li>
-              <li>
-                <Link to="/play">Play</Link>
-              </li>
-            </ul>
-          </nav>
-
+        <div class="header">
+          <div className="ui clearing segment header-content">
+          <h3 className="ui floated header title">
+                <i className="money icon"></i>
+                <div className="content">
+                    SELL
+                    <div className="sub header">Sell your card to get money</div>
+                </div>
+            </h3>
+            <nav className="navMenu header ">
+                <a>
+                  <Link to="/">Home</Link>
+                </a>
+                <a>
+                  <Link to="/buy">Buy</Link>
+                </a>
+                <a>
+                  <Link to="/sell">Sell</Link>
+                </a>
+                <a>
+                  <Link to="/play">Play</Link>
+                </a>
+            </nav>
+            <h3 className="ui floated header user-navbar">
+                <i className="user circle outline icon"></i>
+                <div className="content">
+                    <span id="userNameId">{user.name}</span>
+                    <div className="sub header"><span>{user.price}</span>$</div>
+                </div>
+            </h3>
+          </div>
           <Switch>
           <Route path="/play">
               <PlayPage />
