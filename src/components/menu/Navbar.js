@@ -10,6 +10,9 @@ import { HomePage } from "../../views/Home/HomePage";
 import { PlayPage } from "../../views/Play/PlayPage";
 import { SellPage } from "../../views/Sell/SellPage";
 
+import { UserFormLoginPage } from "../../views/Form/UserFormLoginPage";
+import { UserFormRegisterPage } from "../../views/Form/UserFormRegisterPage";
+
 import './Navbar.css'
 import 'fontsource-roboto';
 import '../../assets/Semantic-UI-CSS-master/semantic.css'
@@ -44,6 +47,12 @@ import '../../assets/Semantic-UI-CSS-master/semantic.css'
                 <a>
                   <Link to="/play">Play</Link>
                 </a>
+                <a>
+                  <Link to="/login">Login</Link>
+                </a>
+                <a>
+                  <Link to="/register">Register</Link>
+                </a>
             </nav>
             <h3 className="ui floated header user-navbar">
                 <i className="user circle outline icon"></i>
@@ -62,6 +71,12 @@ import '../../assets/Semantic-UI-CSS-master/semantic.css'
             </Route>
             <Route path="/buy">
               <BuyPage />
+            </Route>
+            <Route path="/login">
+              <UserFormLoginPage />
+            </Route>
+            <Route path="/register">
+              <UserFormRegisterPage />
             </Route>
             <Route path="/">
               <HomePage />
