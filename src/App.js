@@ -1,11 +1,15 @@
+import { BrowserRouter, Switch } from 'react-router-dom';
 import './App.css';
 import { HeaderComponent } from './components/header/HeaderComponent';
+import { RouterApp } from './router/RouterApp';
 
 function App() {
   return (
-    <div className="App">
-      <HeaderComponent></HeaderComponent>
-    </div>
+    <BrowserRouter>
+        <HeaderComponent></HeaderComponent>
+        <RouterApp></RouterApp>
+    </BrowserRouter>
+
   );
 }
 
