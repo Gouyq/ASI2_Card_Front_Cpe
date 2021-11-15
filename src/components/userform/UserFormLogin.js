@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { UserLogin } from '../../models/UserLogin'
+import { UserService } from '../../services/UserService'
 
 export const UserFormLogin = (props) => {
 
@@ -7,14 +9,22 @@ export const UserFormLogin = (props) => {
 
     const handleSubmit = (event) => {
         if(login && password) {
-            let user = new Object()
-            user.login = login
-            user.password = password
+            let user = new UserLogin(login, password)
 
-            let userJSON = JSON.stringify(user)
+            let authUser = new UserService().getAuth(user)
 
-            // TODO - envoie au WS
-            console.log(userJSON)
+            authUser.then(function(response) {
+                response.json().then(function(value) {
+                    console.log(value)
+                    if(value != -1) {
+                        // OK
+                        // TODO
+                    } else {
+                        alert("The user does not exists... Please check the fields!")
+                    }
+                })
+            })
+
         } else {
             alert("All fields are mandatory!")
         }
