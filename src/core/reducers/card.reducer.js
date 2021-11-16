@@ -1,7 +1,8 @@
-import { UPDATE_CARDS } from "../actions";
+import { UPDATE_CARDS, UPDATE_CARD_DETAIL } from "../actions";
 
 const initialState = {
-    cards: []
+    cards: [],
+    cardDetail: undefined
 }
 
 const cardReducer = (state = initialState, action) => {
@@ -10,6 +11,11 @@ const cardReducer = (state = initialState, action) => {
             return {
                 ...state,
                 cards: action.cards
+            }
+        case UPDATE_CARD_DETAIL:
+            return {
+                ...state,
+                cardDetail: action.cardDetail
             }
         default:
             return state

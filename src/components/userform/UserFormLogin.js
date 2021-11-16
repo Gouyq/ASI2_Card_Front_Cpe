@@ -49,7 +49,7 @@ export const UserFormLogin = (props) => {
                     value.lastName, value.surName, value.email, value.cardList)
 
                 dispatch(setIsLogged(true))
-                dispatch(setUser(userDisplay)) // On dirait que ça ne marche pas...
+                dispatch(setUser(userDisplay))
             })
         })
     }
