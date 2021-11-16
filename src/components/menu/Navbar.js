@@ -1,15 +1,13 @@
 import {
     Link
-  } from "react-router-dom";
+  } from "react-router-dom"
 
 import './Navbar.css'
 import 'fontsource-roboto';
 import '../../assets/Semantic-UI-CSS-master/semantic.css'
 
 import { useSelector } from 'react-redux'
-import { selectIsLogged } from '../../core/selectors'
-import { selectUser } from "../../core/selectors";
-
+import { selectIsLogged, selectUser } from '../../core/selectors'
 
 export const Navbar = function() {
 

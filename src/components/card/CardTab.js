@@ -1,6 +1,11 @@
 import { CardCell } from './CardCell'
 
-export const CardTab = (props) => {
+import { useSelector } from 'react-redux'
+import { selectCards } from '../../core/selectors'
+
+export const CardTab = () => {
+
+    const cards = useSelector(selectCards)
     
     return (
         <table class="ui selectable celled table" id="cardListId">
@@ -18,8 +23,7 @@ export const CardTab = (props) => {
             </tr>
         </thead>
         <tbody>
-            {props.cards
-                .map(card => <CardCell card={card}/>)}
+            {cards.map(card => <CardCell card={card}/>)}
         </tbody>
     </table>
     )
