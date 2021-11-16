@@ -1,12 +1,11 @@
 import '../../assets/Semantic-UI-CSS-master/semantic.css'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { setCardDetail, setContext } from '../../core/actions';
+import { useDispatch } from 'react-redux'
+import { setCardDetail } from '../../core/actions';
 
 export const CardCell = ({card}) => {
 
     const dispatch = useDispatch()
-    const context = useSelector(setContext)
 
     const handleClick = () => {
         dispatch(setCardDetail(card))

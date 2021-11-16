@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { UserDisplay } from '../../models/UserDisplay'
 import { UserLogin } from '../../models/UserLogin'
 import { UserService } from '../../services/UserService'
 
@@ -42,23 +41,6 @@ export const UserFormLogin = (props) => {
         } else {
             alert("All fields are mandatory!")
         }
-    }
-
-    const connectUser = (id) => {
-        let getUser = new UserService().getUserById(id)
-
-        getUser.then(function(response) {
-            response.json().then(function(value) {
-                console.log("getUser response")
-                console.log(value)
-
-                let userDisplay = new UserDisplay(value.id, value.account,
-                    value.lastName, value.surName, value.email, value.cardList)
-
-                dispatch(setIsLogged(true))
-                dispatch(setUser(userDisplay))
-            })
-        })
     }
 
     const handleInputChange = (event) => {
