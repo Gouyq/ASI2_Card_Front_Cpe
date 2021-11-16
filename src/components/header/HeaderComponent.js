@@ -16,10 +16,9 @@ export const HeaderComponent = () => {
 
     const titlePage = (
         <h3 className="ui floated header title">
-            <i className="money icon"></i>
+            <i class="chess king icon"></i>
             <div className="content">
-                SELL
-                <div className="sub header">Sell your card to get money</div>
+                CardStore
             </div>
         </h3>
     )

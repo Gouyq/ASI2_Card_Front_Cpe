@@ -25,7 +25,8 @@ export const CardTab = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {cards.map(card => <CardCell card={card}/>)}
+
+                        {cards != undefined ? cards.map(card => <CardCell card={card}/>) : ''}
                     </tbody>
                 </table>
             </div>
