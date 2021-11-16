@@ -53,6 +53,8 @@ export const UserFormRegister = (props) => {
             case "password":
                 setPassword(value)
                 break
+            default: 
+                break;
         }
     }
 

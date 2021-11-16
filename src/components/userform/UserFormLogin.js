@@ -23,7 +23,7 @@ export const UserFormLogin = (props) => {
                     console.log("authUser response")
                     console.log(value)
 
-                    if(value != -1) {
+                    if(value !== -1) {
                         // OK
                         connectUser(value)
                     } else {
@@ -65,6 +65,8 @@ export const UserFormLogin = (props) => {
             case "password":
                 setPassword(value)
                 break
+            default:
+                break;
         }
     }
 

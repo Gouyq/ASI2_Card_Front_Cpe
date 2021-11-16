@@ -47,7 +47,7 @@ export const CardDetails = () => {
                                 <a class="ui left corner label">
                                     {cardDetail.name}
                                 </a>
-                                <img id="cardImgId" class="ui centered image" src={cardDetail.imgUrl}></img>
+                                <img id="cardImgId" class="ui centered image" src={cardDetail.imgUrl} alt="{cardDetail.name}"></img>
                             </div>
                         </div>
                     </div>
