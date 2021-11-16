@@ -4,10 +4,7 @@ import { HeaderComponent } from './components/header/HeaderComponent';
 import { RouterApp } from './router/RouterApp';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import globalReducer from './core/reducers';
-
-const store = createStore(globalReducer)
+import store from './core/reducers';
 
 function App() {
   return (

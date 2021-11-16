@@ -7,6 +7,7 @@ import { PlayPage } from "../views/Play/PlayPage";
 import { SellPage } from "../views/Sell/SellPage";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
+import { Route } from "react-router";
 
 export const RouterApp = () => {
     return (
@@ -17,6 +18,7 @@ export const RouterApp = () => {
             <PrivateRoute exact component={HomePage} path="/" />
             <PublicRoute exact component={UserFormLogin} path="/login"/>
             <PublicRoute exact component={UserFormRegisterPage} path="/register"/>
+            <Route> 404 Not Found!</Route>
         </Switch>
     );
 }

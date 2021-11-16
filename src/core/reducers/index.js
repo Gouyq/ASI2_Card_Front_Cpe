@@ -1,11 +1,11 @@
-import { combineReducers } from 'redux'
+import { combineReducers, createStore } from 'redux'
 
 import userReducer from './user.reducer'
 import cardReducer from './card.reducer'
 
-const globalReducer = combineReducers({
+const store = createStore(combineReducers({
     userState: userReducer,
     cardState: cardReducer
-})
+}))
 
-export default globalReducer
+export default store

@@ -11,12 +11,12 @@ const userReducer = (state = initialState, action) => {
         case UPDATE_ISLOGGED:
             return {
                 ...state,
-                isLogged: action.value
+                isLogged: action.payload,
             }
         case UPDATE_USER:
             return {
                 ...state,
-                user: action.user
+                user: action.payload
             }
         default:
             return state

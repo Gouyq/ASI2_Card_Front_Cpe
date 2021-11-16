@@ -9,7 +9,7 @@ const cardReducer = (state = initialState, action) => {
         case UPDATE_CARDS:
             return {
                 ...state,
-                cards: action.cards
+                cards: action.payload
             }
         default:
             return state
