@@ -8,11 +8,16 @@ import '../../assets/Semantic-UI-CSS-master/semantic.css'
 
 import { useSelector } from 'react-redux'
 import { selectIsLogged } from '../../core/selectors'
+import { selectUser } from "../../core/selectors";
 
 
 export const Navbar = function() {
 
   const isLogged = useSelector(selectIsLogged)
+  const user = useSelector(selectUser)
+
+  console.log("[REDUX] isLogged: " + isLogged)
+  console.log("[REDUX] user: " + JSON.stringify(user))
 
   if(isLogged){
     return (
