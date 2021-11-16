@@ -3,10 +3,15 @@ import { UserDisplay } from '../../models/UserDisplay'
 import { UserLogin } from '../../models/UserLogin'
 import { UserService } from '../../services/UserService'
 
+import { useDispatch } from 'react-redux'
+import { setIsLogged, setUser } from '../../core/actions'
+
 export const UserFormLogin = (props) => {
 
     const [login, setLogin] = useState(props.login)
     const [password, setPassword] = useState(props.password)
+
+    const dispatch = useDispatch()
 
     const handleSubmit = () => {
         if(login && password) {
@@ -42,11 +47,9 @@ export const UserFormLogin = (props) => {
 
                 let userDisplay = new UserDisplay(value.id, value.account,
                     value.lastName, value.surName, value.email, value.cardList)
-                
-                // TODO - set le user courant à l'aide de Redux
 
-                // TODO - redirection vers une auter page (HomePage ?)
-                window.location.replace("/")
+                dispatch(setIsLogged(true))
+                dispatch(setUser(userDisplay)) // On dirait que ça ne marche pas...
             })
         })
     }

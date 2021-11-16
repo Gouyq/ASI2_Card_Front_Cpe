@@ -1,10 +1,15 @@
 import { Redirect, Route } from "react-router";
-import { isLogin } from "../utils/auth";
+
+import { useSelector } from 'react-redux'
+import { selectIsLogged } from '../core/selectors'
 
 export const PublicRoute = ({component: Component, ...rest}) => {
+
+    const isLogged = useSelector(selectIsLogged)
+
     return (
         <Route {...rest} render={props => (
-            isLogin() ?
+            isLogged ?
                 <Redirect to="/" />
             : <Component {...props} />
         )} />

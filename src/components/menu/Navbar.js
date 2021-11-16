@@ -1,27 +1,20 @@
 import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
     Link
   } from "react-router-dom";
-
-import { BuyPage } from "../../views/Buy/BuyPage";
-import { HomePage } from "../../views/Home/HomePage";
-import { PlayPage } from "../../views/Play/PlayPage";
-import { SellPage } from "../../views/Sell/SellPage";
-
-import { UserFormLoginPage } from "../../views/Form/UserFormLoginPage";
-import { UserFormRegisterPage } from "../../views/Form/UserFormRegisterPage";
 
 import './Navbar.css'
 import 'fontsource-roboto';
 import '../../assets/Semantic-UI-CSS-master/semantic.css'
-import { RouterApp } from "../../router/RouterApp";
-import { isLogin } from "../../utils/auth";
+
+import { useSelector } from 'react-redux'
+import { selectIsLogged } from '../../core/selectors'
 
 
-export const Navbar = function(props) {
-  if(isLogin()){
+export const Navbar = function() {
+
+  const isLogged = useSelector(selectIsLogged)
+
+  if(isLogged){
     return (
       <nav className="navMenu header">
         <Link to="/">Home</Link>
