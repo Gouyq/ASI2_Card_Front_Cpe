@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { UserDisplay } from '../../models/UserDisplay'
 import { UserLogin } from '../../models/UserLogin'
 import { UserService } from '../../services/UserService'
 
@@ -7,27 +8,47 @@ export const UserFormLogin = (props) => {
     const [login, setLogin] = useState(props.login)
     const [password, setPassword] = useState(props.password)
 
-    const handleSubmit = (event) => {
+    const handleSubmit = () => {
         if(login && password) {
             let user = new UserLogin(login, password)
-
             let authUser = new UserService().getAuth(user)
 
             authUser.then(function(response) {
                 response.json().then(function(value) {
+                    console.log("authUser response")
                     console.log(value)
+
                     if(value != -1) {
                         // OK
-                        // TODO
+                        connectUser(value)
                     } else {
+                        // KO
                         alert("The user does not exists... Please check the fields!")
                     }
                 })
             })
-
         } else {
             alert("All fields are mandatory!")
         }
+    }
+
+    const connectUser = (id) => {
+        let getUser = new UserService().getUserById(id)
+
+        getUser.then(function(response) {
+            response.json().then(function(value) {
+                console.log("getUser response")
+                console.log(value)
+
+                let userDisplay = new UserDisplay(value.id, value.account,
+                    value.lastName, value.surName, value.email, value.cardList)
+                
+                // TODO - set le user courant à l'aide de Redux
+
+                // TODO - redirection vers une auter page (HomePage ?)
+                window.location.replace("/")
+            })
+        })
     }
 
     const handleInputChange = (event) => {

@@ -1,8 +1,8 @@
 // https://www.youtube.com/watch?v=eKY9r8tQZEM
 
 const headers = {
-    //"Accept": "application/json",
-    //"content-type": "application/json"
+    "Accept": "application/json",
+    "content-type": "application/json"
 }
 
 function joinURL(baseURL, url) {

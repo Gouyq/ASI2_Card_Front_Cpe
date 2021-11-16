@@ -4,6 +4,7 @@ export class UserRegister {
         this.surName = surName
         this.email = email
         this.login = login
-        this.password = password
+        this.pwd = password
+        this.account = 1000 // Argent du user avec une valeur arbitraire.
     }
 }

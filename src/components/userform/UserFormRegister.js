@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { UserRegister } from "../../models/UserRegister"
+import UserService from "../../services/UserService"
 
 export const UserFormRegister = (props) => {
 
@@ -9,14 +10,24 @@ export const UserFormRegister = (props) => {
     const [login, setLogin] = useState(props.login)
     const [password, setPassword] = useState(props.password)
 
-    const handleSubmit = (event) => {
+    const handleSubmit = () => {
         if(lastName && surName && email && login && password) {
             let user = new UserRegister(lastName, surName, email, login, password)
+            let registerUser = new UserService().registerUser(user)
+            console.log(user)
 
-            let userJSON = JSON.stringify(user)
+            registerUser.then(function(response) {
+                console.log("registerUser response")
+                console.log(response)
 
-            // TODO - envoie au WS
-            console.log(userJSON)
+                if(response.status === 200) {
+                    // OK
+                    window.location.replace("/login")
+                } else {
+                    // KO
+                    alert("Something wrong happened... Please check the fields!")
+                }
+            })
         } else {
             alert("All fields are mandatory!")
         }

@@ -14,9 +14,23 @@ export class UserService extends Service {
     getAuth(userLogin) {
         const url = `auth?login=${userLogin.login}&pwd=${userLogin.password}`
         const method = "GET"
-        //const data = JSON.stringify(userLogin)
 
         return super.request(url, method)
+    }
+
+    getUserById(id) {
+        const url = `user/${id}`
+        const method = "GET"
+
+        return super.request(url, method)
+    }
+
+    registerUser(userRegister) {
+        const url = `/user`
+        const method = "POST"
+        const data = userRegister
+
+        return super.request(url, method, data)
     }
 }
 
