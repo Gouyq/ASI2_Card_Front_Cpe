@@ -2,7 +2,7 @@ import { CardCell } from './CardCell'
 import { CardDetails } from './CardDetails'
 
 import { useSelector } from 'react-redux'
-import { selectCards } from '../../core/selectors'
+import { selectCards } from '../../core/selectors';
 
 export const CardTab = () => {
 
@@ -22,7 +22,6 @@ export const CardTab = () => {
                             <th>Defence</th>
                             <th>Attack</th>
                             <th>Price</th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>

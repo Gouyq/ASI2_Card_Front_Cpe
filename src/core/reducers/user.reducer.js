@@ -1,9 +1,10 @@
 import { UserDisplay } from "../../models/UserDisplay";
-import { UPDATE_ISLOGGED, UPDATE_USER } from "../actions";
+import { UPDATE_ISLOGGED, UPDATE_USER, LOGOUT_USER, UPDATE_CONTEXT } from '../actions';
 
 const initialState = {
     isLogged: false,
-    user: new UserDisplay()
+    user: new UserDisplay(),
+    context: null
 }
 
 const userReducer = (state = initialState, action) => {
@@ -17,6 +18,17 @@ const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 user: action.payload
+            }
+        case LOGOUT_USER:
+            return {
+                ...state,
+                user: action.payload.user,
+                isLogged: action.payload.isLogged
+            }
+        case UPDATE_CONTEXT:
+            return {
+                ...state,
+                context: action.payload
             }
         default:
             return state

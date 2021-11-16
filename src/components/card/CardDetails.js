@@ -1,11 +1,56 @@
 import '../../assets/Semantic-UI-CSS-master/semantic.css'
 
-import { useSelector } from 'react-redux'
-import { selectCardDetail } from '../../core/selectors'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCardDetail, selectUser, selectContext } from '../../core/selectors';
+import { StoreService } from '../../services/StoreService';
+import { UserService } from '../../services/UserService';
+import { setUser } from '../../core/actions';
 
 export const CardDetails = () => {
 
+    const dispatch = useDispatch()
     const cardDetail = useSelector(selectCardDetail)
+    const user = useSelector(selectUser)
+    const context = useSelector(selectContext)
+    const userService = new UserService()
+
+    const refresh = (result) => {
+        if(result){
+            userService.refreshUser(user.id).then((responseUser) => {
+                if(responseUser){
+                    dispatch(setUser(responseUser))
+                }
+            })
+        }
+       
+    }
+
+    const handleClick = () =>{
+        console.log(context)
+        if(context === "buy"){
+            let buyCard = new StoreService().buyCard({ 
+                user_id: user.id,
+                card_id: cardDetail.id
+            })
+            buyCard.then(function(response) {
+                response.json().then(function(value) {
+                    refresh(value)
+                })
+            })
+        }
+        else if (context === "sell"){
+            let sellCard = new StoreService().sellCard({ 
+                user_id: user.id,
+                card_id: cardDetail.id
+            })
+
+            sellCard.then(function(response) {
+                response.json().then(function(value) {
+                    refresh(value)
+                })
+            })
+        }
+    }
 
     if(!cardDetail) {
         return null
@@ -47,7 +92,7 @@ export const CardDetails = () => {
                                 <a class="ui left corner label">
                                     {cardDetail.name}
                                 </a>
-                                <img id="cardImgId" class="ui centered image" src={cardDetail.imgUrl} alt="{cardDetail.name}"></img>
+                                <img id="cardImgId" class="ui centered image" src={cardDetail.imgUrl} alt={cardDetail.name}></img>
                             </div>
                         </div>
                     </div>
@@ -64,13 +109,16 @@ export const CardDetails = () => {
                     </div>
                     <div class="content">
                         <div class="right floated">
-                            <span id="cardAttackId">Attack: {cardDetail.attack}</span>
                             <i class="wizard icon"></i>
+                            <span id="cardAttackId">Attack: {cardDetail.attack}</span>
                         </div>
-                        <i class="protect icon"></i>
-                        <span id="cardDefenceId">Defence: {cardDetail.defence}</span>
+                        <div class="left floated">
+                            <i class="protect icon"></i>
+                            <span id="cardDefenceId">Defence: {cardDetail.defence}</span>
+                        </div>
+                        
                     </div>
-                    <div class="ui bottom attached button">
+                    <div class="ui bottom attached button" onClick={handleClick}>
                         <i class="money icon"></i>
                         <span id="cardPriceId">{cardDetail.price} $</span>
                     </div>

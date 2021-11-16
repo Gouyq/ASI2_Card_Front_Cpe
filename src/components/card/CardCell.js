@@ -1,11 +1,12 @@
 import '../../assets/Semantic-UI-CSS-master/semantic.css'
 
-import { useDispatch } from 'react-redux'
-import { setCardDetail } from '../../core/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCardDetail, setContext } from '../../core/actions';
 
 export const CardCell = ({card}) => {
 
     const dispatch = useDispatch()
+    const context = useSelector(setContext)
 
     const handleClick = () => {
         dispatch(setCardDetail(card))
@@ -13,7 +14,10 @@ export const CardCell = ({card}) => {
 
     return (
         <tr onClick={handleClick}>
-            <td>{card.name}</td>
+            <td>
+                <img id="cardImgId" class="ui avatar image" src={card.smallImgUrl} alt={card.name}></img>
+                <span>{card.name}</span>
+            </td>
             <td>{card.description}</td>
             <td>{card.family}</td>
             <td>{card.hp}</td>
@@ -21,14 +25,6 @@ export const CardCell = ({card}) => {
             <td>{card.defence}</td>
             <td>{card.attack}</td>
             <td>{card.price} $</td>
-            <td>
-                <div class="ui vertical animated button" tabindex="0">
-                    <div class="hidden content">Sell</div>
-                    <div class="visible content">
-                        <i class="shop icon"></i>
-                    </div>
-                </div>
-            </td>
         </tr>
     )
 }
