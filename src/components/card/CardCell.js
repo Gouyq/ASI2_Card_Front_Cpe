@@ -8,7 +8,7 @@ export const CardCell = ({card}) => {
         <td>{card.family}</td>
         <td>{card.hp}</td>
         <td>{card.energy}</td>
-        <td>{card.defense}</td>
+        <td>{card.defence}</td>
         <td>{card.attack}</td>
         <td>{card.price} $</td>
         <td>
