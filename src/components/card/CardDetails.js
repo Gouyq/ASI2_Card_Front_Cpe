@@ -9,6 +9,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 
+import logo from '../../assets/images/logoCS.jpg';
+
 export const CardDetails = () => {
 
     const dispatch = useDispatch()
@@ -54,7 +56,57 @@ export const CardDetails = () => {
     }
 
     if(!cardDetail) {
-        return null
+        return (
+            <Card>
+                <Card.Header>
+                    <Row>
+                        <Col>
+                            <i class="bi bi-heart-fill"></i>&nbsp;HP
+                        </Col>
+                        <Col>
+                            Select a card
+                        </Col>
+                        <Col>
+                            Energy&nbsp;<i class="bi bi-lightning-fill"></i>
+                        </Col>
+                    </Row>
+                </Card.Header>
+                <Card.Img src={logo} alt="" />
+                <Card.Body>
+                    <Row>
+                        <Col>
+                            Description
+                        </Col>
+                        <Col>
+                            Family
+                        </Col>
+                    </Row>
+                    <hr/>
+                    <Row>
+                        <Col>
+                            <i class="bi bi-heart-fill"></i>&nbsp;HP
+                        </Col>
+                        <Col>
+                            Energy&nbsp;<i class="bi bi-lightning-fill"></i>
+                        </Col>
+                    </Row>
+                    <hr/>
+                    <Row>
+                        <Col>
+                            <i class="bi bi-hammer"></i>&nbsp;Attack
+                        </Col>
+                        <Col>
+                            Defence&nbsp;<i class="bi bi-shield-fill-x"></i>
+                        </Col>
+                    </Row>
+                </Card.Body>
+                <Card.Footer>
+                    <Button variant="secondary">
+                        <i class="bi bi-cash"></i>&nbsp;Buy / Sell
+                    </Button>
+                </Card.Footer>
+            </Card>
+        )
     }
 
     return (

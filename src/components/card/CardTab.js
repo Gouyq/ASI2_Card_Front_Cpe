@@ -16,7 +16,7 @@ export const CardTab = () => {
     return (
         <Container>
             <Row>
-                <Col sm={8}>
+                <Col sm={9}>
                     <Table striped bordered hover>
                         <thead>
                             <tr>
@@ -36,7 +36,7 @@ export const CardTab = () => {
                         </tbody>
                     </Table>
                 </Col>
-                <Col sm={4}>
+                <Col sm={3}>
                     <CardDetails></CardDetails>
                 </Col>
             </Row>
