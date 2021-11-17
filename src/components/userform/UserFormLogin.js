@@ -18,22 +18,16 @@ export const UserFormLogin = (props) => {
     const handleSubmit = () => {
         if(login && password) {
             let user = new UserLogin(login, password)
-            const userService = new UserService()
-            let authUser = userService.getAuth(user)
 
-            authUser.then(function(response) {
+            UserService.getInstance().getAuth(user).then(function(response) {
                 response.json().then(function(value) {
-                    console.log("authUser response")
-                    console.log(value)
-
                     if(value !== -1) {
-                        userService.refreshUser(value).then((responseUser) => {
+                        UserService.getInstance().refreshUser(value).then((responseUser) => {
                             if(responseUser){
                                 dispatch(setIsLogged(true))
                                 dispatch(setUser(responseUser))
                             }
                         })
-                        
                     } else {
                         alert("The user does not exists... Please check the fields!")
                     }

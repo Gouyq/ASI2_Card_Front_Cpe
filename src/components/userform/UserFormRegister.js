@@ -16,13 +16,8 @@ export const UserFormRegister = (props) => {
     const handleSubmit = () => {
         if(lastName && surName && email && login && password) {
             let user = new UserRegister(lastName, surName, email, login, password)
-            let registerUser = new UserService().registerUser(user)
-            console.log(user)
 
-            registerUser.then(function(response) {
-                console.log("registerUser response")
-                console.log(response)
-
+            UserService.getInstance().registerUser(user).then(function(response) {
                 if(response.status === 200) {
                     window.location.replace("/login")
                 } else {

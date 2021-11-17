@@ -14,12 +14,10 @@ export const BuyPage = () => {
     useEffect(() => {
         dispatch(setContext("buy"))
         dispatch(setCardDetail(null))
-        let getAllCards = new CardService().getAllCards()
 
-        getAllCards.then(function(response) {
+        CardService.getInstance().getAllCards().then(function(response) {
             response.json().then(function(value) {
                 const cards = value.filter(card => !user.cardList.some(userCard => card.id === userCard.id  ))
-                console.log(cards)
                 dispatch(setCards(cards))
             })
         })

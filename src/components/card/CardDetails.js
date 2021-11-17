@@ -15,11 +15,10 @@ export const CardDetails = () => {
     const cardDetail = useSelector(selectCardDetail)
     const user = useSelector(selectUser)
     const context = useSelector(selectContext)
-    const userService = new UserService()
 
     const refresh = (result) => {
         if(result){
-            userService.refreshUser(user.id).then((responseUser) => {
+            UserService.getInstance().refreshUser(user.id).then((responseUser) => {
                 if(responseUser){
                     dispatch(setUser(responseUser))
                 }
@@ -29,9 +28,8 @@ export const CardDetails = () => {
     }
 
     const handleClick = () =>{
-        console.log(context)
         if(context === "buy"){
-            let buyCard = new StoreService().buyCard({ 
+            let buyCard = StoreService.getInstance().buyCard({ 
                 user_id: user.id,
                 card_id: cardDetail.id
             })
@@ -42,7 +40,7 @@ export const CardDetails = () => {
             })
         }
         else if (context === "sell"){
-            let sellCard = new StoreService().sellCard({ 
+            let sellCard = StoreService.getInstance().sellCard({ 
                 user_id: user.id,
                 card_id: cardDetail.id
             })

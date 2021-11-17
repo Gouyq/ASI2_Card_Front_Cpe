@@ -2,6 +2,17 @@ import { Service } from './Service'
 import { UserDisplay } from '../models/UserDisplay';
 
 export class UserService extends Service {
+
+    static instance = null
+
+    static getInstance() {
+        if(this.instance == null) {
+            this.instance = new UserService()
+        }
+
+        return this.instance
+    }
+    
     constructor() {
         // Noter serveur.
         //const domain = "http://localhost:8081"
@@ -39,9 +50,6 @@ export class UserService extends Service {
 
         return getUser.then(function(response) {
             return response.json().then(function(value) {
-                console.log("getUser response")
-                console.log(value)
-
                 let userDisplay = new UserDisplay(value.id, value.account,
                     value.lastName, value.surName, value.email, value.cardList)
 
