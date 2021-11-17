@@ -102,7 +102,7 @@ export const CardDetails = () => {
                 </Card.Body>
                 <Card.Footer>
                     <Button variant="secondary">
-                        <i class="bi bi-cash"></i>&nbsp;Buy / Sell
+                        <i class="bi bi-cash"></i>&nbsp;{context.toUpperCase()}&nbsp;<i class="bi bi-cash"></i>
                     </Button>
                 </Card.Footer>
             </Card>
