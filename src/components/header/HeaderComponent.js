@@ -60,6 +60,7 @@ export const HeaderComponent = () => {
                 <Col><h2><Menu></Menu></h2></Col>
                 <Col>{ isLogin ? userInfo : ''}</Col>
             </Row>
+            <hr/>
         </div>
     )
 }
