@@ -2,6 +2,9 @@ import { useState } from "react"
 import { UserRegister } from "../../models/UserRegister"
 import UserService from "../../services/UserService"
 
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
 export const UserFormRegister = (props) => {
 
     const [lastName, setLastName] = useState(props.lastName)
@@ -21,10 +24,8 @@ export const UserFormRegister = (props) => {
                 console.log(response)
 
                 if(response.status === 200) {
-                    // OK
                     window.location.replace("/login")
                 } else {
-                    // KO
                     alert("Something wrong happened... Please check the fields!")
                 }
             })
@@ -59,70 +60,73 @@ export const UserFormRegister = (props) => {
     }
 
     return (
-        <div>
-            <label>
-                Lastname
-            </label>
-            <br/>
-            <input
-                name="lastName"
-                type="text"
-                placeholder="Lastname"
-                required
-                value={lastName}
-                onChange={handleInputChange} />
-            <br/>
-            <label>
-                Surname
-            </label>
-            <br/>
-            <input
-                name="surName"
-                type="text"
-                placeholder="Surname"
-                required
-                value={surName}
-                onChange={handleInputChange} />
-            <br/>
-            <label>
-                Email
-            </label>
-            <br/>
-            <input
-                name="email"
-                type="text"
-                placeholder="Email"
-                required
-                value={email}
-                onChange={handleInputChange} />
-            <br/>
-            <label>
-                Login
-            </label>
-            <br/>
-            <input
-                name="login"
-                type="text"
-                placeholder="Login"
-                required
-                value={login}
-                onChange={handleInputChange} />
-            <br/>
-            <label>
-                Password
-            </label>
-            <br/> 
-            <input
-                name="password"
-                type="password"
-                placeholder="Password"
-                required
-                value={password}
-                onChange={handleInputChange} />
-            <br/>
-            <button onClick={handleSubmit}>
+        <Form>
+            <Form.Group className="m-3">
+                <Form.Label>
+                    Lastname
+                </Form.Label>
+                <Form.Control
+                    name="lastName"
+                    type="text"
+                    placeholder="Lastname"
+                    required
+                    value={lastName}
+                    onChange={handleInputChange} />
+            </Form.Group>
+            <Form.Group className="m-3">
+                <Form.Label>
+                    Surname
+                </Form.Label>
+                <Form.Control
+                    name="surName"
+                    type="text"
+                    placeholder="Surname"
+                    required
+                    value={surName}
+                    onChange={handleInputChange} />
+            </Form.Group>
+            <Form.Group className="m-3">
+                <Form.Label>
+                    Email
+                </Form.Label>
+                <Form.Control
+                    name="email"
+                    type="email"
+                    placeholder="Email"
+                    required
+                    value={email}
+                    onChange={handleInputChange} />
+            </Form.Group>
+            <Form.Group className="m-3">
+                <Form.Label>
+                    Login
+                </Form.Label>
+                <Form.Control
+                    name="login"
+                    type="text"
+                    placeholder="Login"
+                    required
+                    value={login}
+                    onChange={handleInputChange} />
+            </Form.Group>
+            <Form.Group className="m-3">
+                <Form.Label>
+                    Password
+                </Form.Label>
+                <Form.Control
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    required
+                    value={password}
+                    onChange={handleInputChange} />
+            </Form.Group>
+            <Button
+                className="m-3"
+                variant="primary"
+                onClick={handleSubmit} >
                 Register
-            </button>
-        </div>
+            </Button>
+        </Form>
     )
 }

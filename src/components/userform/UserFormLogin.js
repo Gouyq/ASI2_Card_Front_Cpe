@@ -5,6 +5,9 @@ import { UserService } from '../../services/UserService'
 import { useDispatch } from 'react-redux'
 import { setIsLogged, setUser } from '../../core/actions'
 
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+
 export const UserFormLogin = (props) => {
 
     const [login, setLogin] = useState(props.login)
@@ -24,7 +27,6 @@ export const UserFormLogin = (props) => {
                     console.log(value)
 
                     if(value !== -1) {
-                        // OK
                         userService.refreshUser(value).then((responseUser) => {
                             if(responseUser){
                                 dispatch(setIsLogged(true))
@@ -33,7 +35,6 @@ export const UserFormLogin = (props) => {
                         })
                         
                     } else {
-                        // KO
                         alert("The user does not exists... Please check the fields!")
                     }
                 })
@@ -60,34 +61,37 @@ export const UserFormLogin = (props) => {
     }
 
     return (
-        <div>
-            <label>
+        <Form>
+            <Form.Group className="m-3">
+                <Form.Label>
+                    Login
+                </Form.Label>
+                <Form.Control
+                    name="login"
+                    type="text"
+                    placeholder="Login"
+                    required
+                    value={login}
+                    onChange={handleInputChange} />
+            </Form.Group>
+            <Form.Group className="m-3">
+                <Form.Label>
+                    Password
+                </Form.Label>
+                <Form.Control
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    required
+                    value={password}
+                    onChange={handleInputChange} />
+            </Form.Group>
+            <Button
+                className="m-3"
+                variant="primary"
+                onClick={handleSubmit} >
                 Login
-            </label>
-            <br/>
-            <input
-                name="login"
-                type="text"
-                placeholder="Login"
-                required
-                value={login}
-                onChange={handleInputChange} />
-            <br/>
-            <label>
-                Password
-            </label>
-            <br/> 
-            <input
-                name="password"
-                type="password"
-                placeholder="Password"
-                required
-                value={password}
-                onChange={handleInputChange} />
-            <br/>
-            <button onClick={handleSubmit}>
-                Login
-            </button>
-        </div>
+            </Button>
+        </Form>
     )
 }

@@ -1,9 +1,13 @@
-import { Navbar } from "../menu/Navbar"
-import './HeaderComponent.css'
+import { Menu } from "../menu/Menu"
 
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser, selectIsLogged } from '../../core/selectors';
 import { setLogoutUser } from '../../core/actions';
+
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Stack from 'react-bootstrap/Stack'
+import Button from 'react-bootstrap/Button'
 
 export const HeaderComponent = () => {
     const user = useSelector(selectUser)
@@ -15,32 +19,47 @@ export const HeaderComponent = () => {
     }
 
     const titlePage = (
-        <h3 className="ui floated header title">
-            <i class="chess king icon"></i>
-            <div className="content">
-                CardStore
-            </div>
-        </h3>
+        <h1 style={{ float: 'left' }}>
+            <i class="bi bi-suit-spade-fill"></i>
+            &nbsp;
+            Card Store
+            &nbsp;
+            <i class="bi bi-suit-diamond-fill"></i>
+        </h1>
     )
 
-    const userInfo = (                
-        <h3 className="ui floated header user-navbar">
-            <i className="user circle outline icon"></i>
-            <div className="content">
-                <span id="userNameId">{user.surName} {user.lastName}</span>
-                <div className="sub header"><span>{user.account}</span>$</div>
+    const userInfo = (
+        <Stack direction="horizontal" gap={3} style={{ float: 'right' }}>
+            <div>
+                <h1>
+                    <i class="bi bi-person-circle"></i>
+                </h1>
             </div>
-            <i class="sign-out alternate icon" onClick={handleLogout}></i>
-        </h3>
+            <div>
+                <Stack>
+                    <div>
+                        {user.surName}&nbsp;{user.lastName}
+                    </div>
+                    <div>
+                        {user.account}
+                    </div>
+                </Stack>
+            </div>
+            <div>
+                <Button variant="danger" onClick={handleLogout} size="lg">
+                    <i class="bi bi-arrow-right-square"></i>
+                </Button>
+            </div>
+        </Stack>
     )
 
     return (
-        <div class="header">
-            <div className="ui clearing segment header-content">
-                { isLogin ? titlePage : ''} 
-                <Navbar></Navbar>
-                { isLogin ? userInfo : ''} 
-            </div>
+        <div class="m-3">
+            <Row>
+                <Col>{ isLogin ? titlePage : ''}</Col>
+                <Col><h2><Menu></Menu></h2></Col>
+                <Col>{ isLogin ? userInfo : ''}</Col>
+            </Row>
         </div>
     )
 }

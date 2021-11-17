@@ -4,35 +4,42 @@ import { CardDetails } from './CardDetails'
 import { useSelector } from 'react-redux'
 import { selectCards } from '../../core/selectors';
 
+import Container from 'react-bootstrap/Container'
+import Table from 'react-bootstrap/Table'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+
 export const CardTab = () => {
 
     const cards = useSelector(selectCards)
     
     return (
-        <div class="ui grid">
-            <div class="twelve wide column">
-                <table class="ui selectable celled table" id="cardListId">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Family</th>
-                            <th>HP</th>
-                            <th>Energy</th>
-                            <th>Defence</th>
-                            <th>Attack</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        {cards != undefined ? cards.map(card => <CardCell card={card}/>) : ''}
-                    </tbody>
-                </table>
-            </div>
-            <div class="four wide column">
-                <CardDetails></CardDetails>
-            </div>
-        </div>
+        <Container>
+            <Row>
+                <Col sm={8}>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>Icon</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Family</th>
+                                <th>HP</th>
+                                <th>Energy</th>
+                                <th>Defence</th>
+                                <th>Attack</th>
+                                <th>Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {cards != undefined ? cards.map(card => <CardCell card={card}/>) : ''}
+                        </tbody>
+                    </Table>
+                </Col>
+                <Col sm={4}>
+                    <CardDetails></CardDetails>
+                </Col>
+            </Row>
+        </Container>
     )
 }

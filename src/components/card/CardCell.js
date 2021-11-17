@@ -1,7 +1,7 @@
-import '../../assets/Semantic-UI-CSS-master/semantic.css'
-
 import { useDispatch } from 'react-redux'
 import { setCardDetail } from '../../core/actions';
+
+import Image from 'react-bootstrap/Image'
 
 export const CardCell = ({card}) => {
 
@@ -13,17 +13,15 @@ export const CardCell = ({card}) => {
 
     return (
         <tr onClick={handleClick}>
-            <td>
-                <img id="cardImgId" class="ui avatar image" src={card.smallImgUrl} alt={card.name}></img>
-                <span>{card.name}</span>
-            </td>
+            <td><Image src={card.smallImgUrl} alt={card.name} roundedCircle fluid style={{ width: "32px", height: "32px" }}/></td>
+            <td>{card.name}</td>
             <td>{card.description}</td>
             <td>{card.family}</td>
             <td>{card.hp}</td>
             <td>{card.energy}</td>
             <td>{card.defence}</td>
             <td>{card.attack}</td>
-            <td>{card.price} $</td>
+            <td>{card.price}&nbsp;$</td>
         </tr>
     )
 }
