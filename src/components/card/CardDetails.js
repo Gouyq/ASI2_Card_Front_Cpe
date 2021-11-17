@@ -155,6 +155,7 @@ export const CardDetails = () => {
             </Card.Body>
             <Card.Footer>
                 <Button variant="secondary" onClick={handleClick}>
+                    {context.toUpperCase()}&nbsp;|&nbsp;
                     <i class="bi bi-cash"></i>&nbsp;{cardDetail.price}&nbsp;$
                 </Button>
             </Card.Footer>
