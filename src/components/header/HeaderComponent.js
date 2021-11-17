@@ -41,7 +41,7 @@ export const HeaderComponent = () => {
                         {user.surName}&nbsp;{user.lastName}
                     </div>
                     <div>
-                        {user.account}
+                        {user.account}&nbsp;$
                     </div>
                 </Stack>
             </div>
@@ -56,7 +56,7 @@ export const HeaderComponent = () => {
     return (
         <div class="m-3">
             <Row>
-                <Col>{ isLogin ? titlePage : ''}</Col>
+                <Col>{titlePage}</Col>
                 <Col><h2><Menu></Menu></h2></Col>
                 <Col>{ isLogin ? userInfo : ''}</Col>
             </Row>
