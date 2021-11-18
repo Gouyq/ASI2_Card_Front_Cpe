@@ -1,6 +1,6 @@
 import logo from '../../assets/images/logoCS.jpg';
 
-export const HomePage = (props) => {
+export const HomePage = () => {
     return (
     <div>
         <img src={logo} alt='Home Page Logo' />
