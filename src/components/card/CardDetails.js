@@ -61,13 +61,13 @@ export const CardDetails = () => {
                 <Card.Header>
                     <Row>
                         <Col>
-                            <i class="bi bi-heart-fill"></i>&nbsp;HP
+                            <i className="bi bi-heart-fill"></i>&nbsp;HP
                         </Col>
                         <Col>
                             Select a card
                         </Col>
                         <Col>
-                            Energy&nbsp;<i class="bi bi-lightning-fill"></i>
+                            Energy&nbsp;<i className="bi bi-lightning-fill"></i>
                         </Col>
                     </Row>
                 </Card.Header>
@@ -84,25 +84,25 @@ export const CardDetails = () => {
                     <hr/>
                     <Row>
                         <Col>
-                            <i class="bi bi-heart-fill"></i>&nbsp;HP
+                            <i className="bi bi-heart-fill"></i>&nbsp;HP
                         </Col>
                         <Col>
-                            Energy&nbsp;<i class="bi bi-lightning-fill"></i>
+                            Energy&nbsp;<i className="bi bi-lightning-fill"></i>
                         </Col>
                     </Row>
                     <hr/>
                     <Row>
                         <Col>
-                            <i class="bi bi-hammer"></i>&nbsp;Attack
+                            <i className="bi bi-hammer"></i>&nbsp;Attack
                         </Col>
                         <Col>
-                            Defence&nbsp;<i class="bi bi-shield-fill-x"></i>
+                            Defence&nbsp;<i className="bi bi-shield-fill-x"></i>
                         </Col>
                     </Row>
                 </Card.Body>
                 <Card.Footer>
                     <Button variant="secondary">
-                        <i class="bi bi-cash"></i>&nbsp;{context.toUpperCase()}&nbsp;<i class="bi bi-cash"></i>
+                        <i className="bi bi-cash"></i>&nbsp;{context.toUpperCase()}&nbsp;<i className="bi bi-cash"></i>
                     </Button>
                 </Card.Footer>
             </Card>
@@ -114,13 +114,13 @@ export const CardDetails = () => {
             <Card.Header>
                 <Row>
                     <Col>
-                        <i class="bi bi-heart-fill"></i>&nbsp;{cardDetail.hp}
+                        <i className="bi bi-heart-fill"></i>&nbsp;{cardDetail.hp}
                     </Col>
                     <Col>
                         {cardDetail.name}
                     </Col>
                     <Col>
-                        {cardDetail.energy}&nbsp;<i class="bi bi-lightning-fill"></i>
+                        {cardDetail.energy}&nbsp;<i className="bi bi-lightning-fill"></i>
                     </Col>
                 </Row>
             </Card.Header>
@@ -137,26 +137,26 @@ export const CardDetails = () => {
                 <hr/>
                 <Row>
                     <Col>
-                        <i class="bi bi-heart-fill"></i>&nbsp;{cardDetail.hp}
+                        <i className="bi bi-heart-fill"></i>&nbsp;{cardDetail.hp}
                     </Col>
                     <Col>
-                        {cardDetail.energy}&nbsp;<i class="bi bi-lightning-fill"></i>
+                        {cardDetail.energy}&nbsp;<i className="bi bi-lightning-fill"></i>
                     </Col>
                 </Row>
                 <hr/>
                 <Row>
                     <Col>
-                        <i class="bi bi-hammer"></i>&nbsp;{cardDetail.attack}
+                        <i className="bi bi-hammer"></i>&nbsp;{cardDetail.attack}
                     </Col>
                     <Col>
-                        {cardDetail.defence}&nbsp;<i class="bi bi-shield-fill-x"></i>
+                        {cardDetail.defence}&nbsp;<i className="bi bi-shield-fill-x"></i>
                     </Col>
                 </Row>
             </Card.Body>
             <Card.Footer>
                 <Button variant="secondary" onClick={handleClick}>
                     {context.toUpperCase()}&nbsp;|&nbsp;
-                    <i class="bi bi-cash"></i>&nbsp;{cardDetail.price}&nbsp;$
+                    <i className="bi bi-cash"></i>&nbsp;{cardDetail.price}&nbsp;$
                 </Button>
             </Card.Footer>
         </Card>

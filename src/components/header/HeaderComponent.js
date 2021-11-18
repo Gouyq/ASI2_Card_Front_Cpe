@@ -20,11 +20,11 @@ export const HeaderComponent = () => {
 
     const titlePage = (
         <h1 style={{ float: 'left' }}>
-            <i class="bi bi-suit-spade-fill"></i>
+            <i className="bi bi-suit-spade-fill"></i>
             &nbsp;
             Card Store
             &nbsp;
-            <i class="bi bi-suit-diamond-fill"></i>
+            <i className="bi bi-suit-diamond-fill"></i>
         </h1>
     )
 
@@ -32,7 +32,7 @@ export const HeaderComponent = () => {
         <Stack direction="horizontal" gap={3} style={{ float: 'right' }}>
             <div>
                 <h1>
-                    <i class="bi bi-person-circle"></i>
+                    <i className="bi bi-person-circle"></i>
                 </h1>
             </div>
             <div>
@@ -47,14 +47,14 @@ export const HeaderComponent = () => {
             </div>
             <div>
                 <Button variant="danger" onClick={handleLogout} size="lg">
-                    <i class="bi bi-arrow-right-square"></i>
+                    <i className="bi bi-arrow-right-square"></i>
                 </Button>
             </div>
         </Stack>
     )
 
     return (
-        <div class="m-3">
+        <div className="m-3">
             <Row>
                 <Col>{titlePage}</Col>
                 <Col><h2><Menu></Menu></h2></Col>
