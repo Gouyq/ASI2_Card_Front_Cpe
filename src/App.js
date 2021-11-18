@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { HeaderComponent } from './components/header/HeaderComponent';
 import { RouterApp } from './router/RouterApp';
+import { FooterComponent } from './components/footer/FooterComponent';
 
 import { Provider } from 'react-redux';
 import { store, persistor } from './core/reducers';
@@ -18,6 +19,7 @@ function App() {
         <div style={{ textAlign: "center" }}>
           <HeaderComponent></HeaderComponent>
           <RouterApp></RouterApp>
+          <FooterComponent></FooterComponent>
         </div>
       </BrowserRouter>
       </PersistGate>
