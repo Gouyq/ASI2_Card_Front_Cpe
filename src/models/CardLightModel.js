@@ -1,11 +1,15 @@
-export class CardLightModel {
-    constructor(energy, hp, defence, attack, price, userId, storeId) {
-        this.energy = energy
+export class CardModel {
+    constructor(coupSpecial, hp, charisme, credibilite, price, userId, name, description, family, affinity, imgUrl) {
+        this.coupSpecial = coupSpecial
         this.hp = hp
-        this.defence = defence
-        this.attack = attack
+        this.charisme = charisme
+        this.credibilite = credibilite
         this.price = price
         this.userId = userId
-        this.storeId = storeId
+        this.name = name
+        this.description = description
+        this.family = family
+        this.affinity = affinity
+        this.imgUrl = imgUrl
     }
 }

@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { selectIsLogged } from '../../core/selectors';
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -8,16 +10,32 @@ import { ChatTab } from '../chat/ChatTab'
 
 export const FooterComponent = (props) => {
 
+    const isLogged = useSelector(selectIsLogged)
+
     const [displayChat, setDisplayChat] = useState(props.displayChat)
 
     const handleChat = () => {
         setDisplayChat(!displayChat)
     }
 
+    const renderChatTab = (
+        <Row>
+            <Col md={{ span: 4, offset: 8 }}><ChatTab></ChatTab></Col>
+        </Row>
+    )
+
+    const renderChatButton = (
+        <div style={{ float: 'right' }}>
+            <Button size="lg" onClick={handleChat}>
+                <i className="bi bi-chat-left-dots"></i>
+            </Button>
+        </div>
+    )
+
     return (
         <div>
             <div>
-                { displayChat && <ChatTab/> }
+                { (displayChat && isLogged) && renderChatTab }
             </div>
             <div>
                 <div className="m-3">
@@ -38,11 +56,7 @@ export const FooterComponent = (props) => {
                             </div>
                         </Col>
                         <Col>
-                            <div style={{ float: 'right' }}>
-                                <Button size="lg" onClick={handleChat}>
-                                    <i className="bi bi-chat-left-dots"></i>
-                                </Button>
-                            </div>
+                            { isLogged && renderChatButton }
                         </Col>
                     </Row>
                 </div>

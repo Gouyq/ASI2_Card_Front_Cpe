@@ -67,7 +67,7 @@ export const CardDetails = () => {
                             Select a card
                         </Col>
                         <Col>
-                            Energy&nbsp;<i className="bi bi-lightning-fill"></i>
+                            Affinity&nbsp;<i className="bi bi-lightning-fill"></i>
                         </Col>
                     </Row>
                 </Card.Header>
@@ -87,16 +87,22 @@ export const CardDetails = () => {
                             <i className="bi bi-heart-fill"></i>&nbsp;HP
                         </Col>
                         <Col>
-                            Energy&nbsp;<i className="bi bi-lightning-fill"></i>
+                            Affinity&nbsp;<i className="bi bi-lightning-fill"></i>
                         </Col>
                     </Row>
                     <hr/>
                     <Row>
                         <Col>
-                            <i className="bi bi-hammer"></i>&nbsp;Attack
+                            <i className="bi bi-hammer"></i>&nbsp;Charisme
                         </Col>
                         <Col>
-                            Defence&nbsp;<i className="bi bi-shield-fill-x"></i>
+                            Credibilite&nbsp;<i className="bi bi-shield-fill-x"></i>
+                        </Col>
+                    </Row>
+                    <hr/>
+                    <Row>
+                        <Col>
+                            Coup spécial&nbsp;<i className="bi bi-shield-fill-x"></i>
                         </Col>
                     </Row>
                 </Card.Body>
@@ -120,7 +126,7 @@ export const CardDetails = () => {
                         {cardDetail.name}
                     </Col>
                     <Col>
-                        {cardDetail.energy}&nbsp;<i className="bi bi-lightning-fill"></i>
+                        {cardDetail.affinity}&nbsp;<i className="bi bi-lightning-fill"></i>
                     </Col>
                 </Row>
             </Card.Header>
@@ -140,16 +146,22 @@ export const CardDetails = () => {
                         <i className="bi bi-heart-fill"></i>&nbsp;{cardDetail.hp}
                     </Col>
                     <Col>
-                        {cardDetail.energy}&nbsp;<i className="bi bi-lightning-fill"></i>
+                        {cardDetail.affinity}&nbsp;<i className="bi bi-lightning-fill"></i>
                     </Col>
                 </Row>
                 <hr/>
                 <Row>
                     <Col>
-                        <i className="bi bi-hammer"></i>&nbsp;{cardDetail.attack}
+                        <i className="bi bi-hammer"></i>&nbsp;{cardDetail.charisme}
                     </Col>
                     <Col>
-                        {cardDetail.defence}&nbsp;<i className="bi bi-shield-fill-x"></i>
+                        {cardDetail.credibilite}&nbsp;<i className="bi bi-shield-fill-x"></i>
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col>
+                        {cardDetail.coupSpecial}&nbsp;<i className="bi bi-shield-fill-x"></i>
                     </Col>
                 </Row>
             </Card.Body>
@@ -161,4 +173,20 @@ export const CardDetails = () => {
             </Card.Footer>
         </Card>
     )
+}
+
+export class CardModel {
+    constructor(coupSpecial, hp, charisme, credibilite, price, userId, name, description, family, affinity, imgUrl) {
+        this.coupSpecial = coupSpecial
+        this.hp = hp
+        this.charisme = charisme
+        this.credibilite = credibilite
+        this.price = price
+        this.userId = userId
+        this.name = name
+        this.description = description
+        this.family = family
+        this.affinity = affinity
+        this.imgUrl = imgUrl
+    }
 }
