@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
+import { UserSocket } from "../../sockets/UserSocket";
 
 export const HeaderComponent = () => {
     const user = useSelector(selectUser)
@@ -16,6 +17,7 @@ export const HeaderComponent = () => {
 
     const handleLogout = () => {
         dispatch(setLogoutUser())
+        UserSocket.getInstance().disconnect();
     }
 
     const titlePage = (
