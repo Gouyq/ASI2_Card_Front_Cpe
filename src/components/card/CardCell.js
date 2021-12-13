@@ -13,7 +13,7 @@ export const CardCell = ({card}) => {
 
     return (
         <tr onClick={handleClick}>
-            <td><Image src={card.smallImgUrl} alt={card.name} roundedCircle fluid style={{ width: "32px", height: "32px" }}/></td>
+            <td><Image src={card.imgUrl} alt={card.name} roundedCircle fluid style={{ width: "32px", height: "32px" }}/></td>
             <td>{card.name}</td>
             <td>{card.description}</td>
             <td>{card.family}</td>
