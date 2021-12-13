@@ -15,10 +15,9 @@ export const BuyPage = () => {
         dispatch(setContext("buy"))
         dispatch(setCardDetail(null))
 
-        CardService.getInstance().getAllCards().then(function(response) {
+        CardService.getInstance().getCardsToSell().then(function(response) {
             response.json().then(function(value) {
-                const cards = value.filter(card => !user.cardList.some(userCard => card.id === userCard.id  ))
-                dispatch(setCards(cards))
+                dispatch(setCards(value))
             })
         })
     })

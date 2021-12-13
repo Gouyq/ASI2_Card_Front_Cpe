@@ -22,7 +22,7 @@ export const UserFormLogin = (props) => {
             UserService.getInstance().getAuth(user).then(function(response) {
                 response.json().then(function(value) {
                     if(value !== -1) {
-                        UserService.getInstance().refreshUser(value).then((responseUser) => {
+                        UserService.getInstance().refreshUser(value.id).then((responseUser) => {
                             if(responseUser){
                                 dispatch(setIsLogged(true))
                                 dispatch(setUser(responseUser))

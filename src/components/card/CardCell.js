@@ -18,9 +18,10 @@ export const CardCell = ({card}) => {
             <td>{card.description}</td>
             <td>{card.family}</td>
             <td>{card.hp}</td>
-            <td>{card.energy}</td>
-            <td>{card.defence}</td>
-            <td>{card.attack}</td>
+            <td>{card.charisme}</td>
+            <td>{card.credibilite}</td>
+            <td>{card.affinity}</td>
+            <td>{card.coupSpecial}</td>
             <td>{card.price}&nbsp;$</td>
         </tr>
     )
