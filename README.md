@@ -5,7 +5,7 @@
 https://github.com/Gouyq/ASI2_Card_Front_Cpe
 
 ## ASI2_Card_Back_Cpe
-https://github.com/Gouyq/ASI2_Card_Back_Cpe
+https://gitlab.com/cvergnon/asi2_card_back_cpe
 
 ## ASI2_Card_Node_Cpe
 https://github.com/Gouyq/ASI2_Card_Node_Cpe

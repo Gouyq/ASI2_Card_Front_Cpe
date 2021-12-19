@@ -54,8 +54,14 @@ export const UserFormRegister = (props) => {
         }
     }
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit()
+        }
+    }
+
     return (
-        <Form>
+        <Form onKeyPress={handleKeyPress}>
             <Form.Group className="m-3">
                 <Form.Label>
                     Lastname

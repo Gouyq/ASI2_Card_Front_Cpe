@@ -25,10 +25,10 @@ export const CardTab = () => {
                                 <th>Description</th>
                                 <th>Family</th>
                                 <th>HP</th>
-                                <th>Charisme</th>
-                                <th>Credibilite</th>
+                                <th>Charisma</th>
+                                <th>Credibility</th>
                                 <th>Affinity</th>
-                                <th>Coup spécial</th>
+                                <th>Special Attack</th>
                                 <th>Price</th>
                             </tr>
                         </thead>

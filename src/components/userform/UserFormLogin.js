@@ -23,7 +23,7 @@ export const UserFormLogin = (props) => {
             UserService.getInstance().getAuth(user).then(function(response) {
                 response.json().then(function(value) {
                     if(value !== -1) {
-                        UserService.getInstance().refreshUser(value).then((responseUser) => {
+                        UserService.getInstance().refreshUser(value.id).then((responseUser) => {
                             if(responseUser){
                                 console.log('here')
                                 dispatch(setIsLogged(true))
@@ -60,8 +60,14 @@ export const UserFormLogin = (props) => {
         }
     }
 
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit()
+        }
+    }
+
     return (
-        <Form>
+        <Form onKeyPress={handleKeyPress}>
             <Form.Group className="m-3">
                 <Form.Label>
                     Login

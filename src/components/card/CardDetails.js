@@ -21,30 +21,29 @@ export const CardDetails = () => {
     const refresh = (result) => {
         if(result){
             UserService.getInstance().refreshUser(user.id).then((responseUser) => {
-                if(responseUser){
+                if(responseUser) {
                     dispatch(setUser(responseUser))
                 }
             })
         }
-       
     }
 
-    const handleClick = () =>{
-        if(context === "buy"){
+    const handleClick = () => {
+        if(context === "buy") {
             let buyCard = StoreService.getInstance().buyCard({ 
-                user_id: user.id,
-                card_id: cardDetail.id
+                userId: user.id,
+                cardId: cardDetail.id
             })
+
             buyCard.then(function(response) {
                 response.json().then(function(value) {
                     refresh(value)
                 })
             })
-        }
-        else if (context === "sell"){
+        } else if (context === "sell") {
             let sellCard = StoreService.getInstance().sellCard({ 
-                user_id: user.id,
-                card_id: cardDetail.id
+                userId: user.id,
+                cardId: cardDetail.id
             })
 
             sellCard.then(function(response) {
@@ -55,19 +54,37 @@ export const CardDetails = () => {
         }
     }
 
+    const getActionButton = () => {
+        if((context === "buy" && user.account >= cardDetail.price) || context === "sell") {
+            return (
+                <Button variant="secondary" onClick={handleClick}>
+                    {context.toUpperCase()}&nbsp;|&nbsp;
+                    <i className="bi bi-cash"></i>&nbsp;{cardDetail.price}&nbsp;$
+                </Button>
+            )
+        } else {
+            return (
+                <Button variant="secondary" disabled>
+                    {context.toUpperCase()}&nbsp;|&nbsp;
+                    <i className="bi bi-cash"></i>&nbsp;{cardDetail.price}&nbsp;$
+                </Button>
+            )
+        }
+    }
+
     if(!cardDetail) {
         return (
             <Card>
                 <Card.Header>
                     <Row>
                         <Col>
-                            <i className="bi bi-heart-fill"></i>&nbsp;HP
+                            <i className="bi bi-heart-fill"></i><br/>HP
                         </Col>
                         <Col>
                             Select a card
                         </Col>
                         <Col>
-                            Affinity&nbsp;<i className="bi bi-lightning-fill"></i>
+                            <i className="bi bi-bookmark-heart-fill"></i><br/>Charisma
                         </Col>
                     </Row>
                 </Card.Header>
@@ -84,25 +101,22 @@ export const CardDetails = () => {
                     <hr/>
                     <Row>
                         <Col>
-                            <i className="bi bi-heart-fill"></i>&nbsp;HP
+                            <i className="bi bi-heart-fill"></i><br/>HP
                         </Col>
                         <Col>
-                            Affinity&nbsp;<i className="bi bi-lightning-fill"></i>
-                        </Col>
-                    </Row>
-                    <hr/>
-                    <Row>
-                        <Col>
-                            <i className="bi bi-hammer"></i>&nbsp;Charisme
-                        </Col>
-                        <Col>
-                            Credibilite&nbsp;<i className="bi bi-shield-fill-x"></i>
+                            <i className="bi bi-shield-fill-x"></i><br/>Credibility
                         </Col>
                     </Row>
                     <hr/>
                     <Row>
                         <Col>
-                            Coup spécial&nbsp;<i className="bi bi-shield-fill-x"></i>
+                            <i className="bi bi-hammer"></i><br/>Special Attack
+                        </Col>
+                    </Row>
+                    <hr/>
+                    <Row>
+                        <Col>
+                            <i className="bi bi-person-check-fill"></i><br/>Affinity
                         </Col>
                     </Row>
                 </Card.Body>
@@ -126,7 +140,7 @@ export const CardDetails = () => {
                         {cardDetail.name}
                     </Col>
                     <Col>
-                        {cardDetail.affinity}&nbsp;<i className="bi bi-lightning-fill"></i>
+                        {cardDetail.charisme}&nbsp;<i className="bi bi-bookmark-heart-fill"></i>
                     </Col>
                 </Row>
             </Card.Header>
@@ -146,47 +160,25 @@ export const CardDetails = () => {
                         <i className="bi bi-heart-fill"></i>&nbsp;{cardDetail.hp}
                     </Col>
                     <Col>
-                        {cardDetail.affinity}&nbsp;<i className="bi bi-lightning-fill"></i>
-                    </Col>
-                </Row>
-                <hr/>
-                <Row>
-                    <Col>
-                        <i className="bi bi-hammer"></i>&nbsp;{cardDetail.charisme}
-                    </Col>
-                    <Col>
                         {cardDetail.credibilite}&nbsp;<i className="bi bi-shield-fill-x"></i>
                     </Col>
                 </Row>
                 <hr/>
                 <Row>
                     <Col>
-                        {cardDetail.coupSpecial}&nbsp;<i className="bi bi-shield-fill-x"></i>
+                        <i className="bi bi-hammer"></i><br/>{cardDetail.coupSpecial}
+                    </Col>
+                </Row>
+                <hr/>
+                <Row>
+                    <Col>
+                        <i className="bi bi-person-check-fill"></i><br/>{cardDetail.affinity}
                     </Col>
                 </Row>
             </Card.Body>
             <Card.Footer>
-                <Button variant="secondary" onClick={handleClick}>
-                    {context.toUpperCase()}&nbsp;|&nbsp;
-                    <i className="bi bi-cash"></i>&nbsp;{cardDetail.price}&nbsp;$
-                </Button>
+                { getActionButton() }
             </Card.Footer>
         </Card>
     )
-}
-
-export class CardModel {
-    constructor(coupSpecial, hp, charisme, credibilite, price, userId, name, description, family, affinity, imgUrl) {
-        this.coupSpecial = coupSpecial
-        this.hp = hp
-        this.charisme = charisme
-        this.credibilite = credibilite
-        this.price = price
-        this.userId = userId
-        this.name = name
-        this.description = description
-        this.family = family
-        this.affinity = affinity
-        this.imgUrl = imgUrl
-    }
 }

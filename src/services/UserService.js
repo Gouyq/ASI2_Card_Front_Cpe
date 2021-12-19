@@ -1,5 +1,6 @@
 import { Service } from './Service'
-import { UserDisplay } from '../models/UserDisplay';
+import { CardService } from './CardService'
+import { UserDisplay } from '../models/UserDisplay'
 
 export class UserService extends Service {
 
@@ -14,11 +15,11 @@ export class UserService extends Service {
     }
     
     constructor() {
-        // Noter serveur.
-        // const domain = "http://localhost:8081"
+        // Notre serveur.
+        const domain = "http://localhost:8081/api"
 
         // Serveur de Jacques.
-         const domain = "https://asi2-backend-market.herokuapp.com"
+        //const domain = "https://asi2-backend-market.herokuapp.com"
 
         super(domain)
     }
@@ -45,13 +46,20 @@ export class UserService extends Service {
         return super.request(url, method, data)
     }
 
-    refreshUser(id){
+    refreshUser(id) {
         let getUser = this.getUserById(id)
+        let getCards = CardService.getInstance().getCardsByUserId(id)
 
-        return getUser.then(function(response) {
-            return response.json().then(function(value) {
-                let userDisplay = new UserDisplay(value.id, value.account,
-                    value.lastName, value.surName, value.email, value.cardList)
+        return Promise.all([getUser, getCards]).then((values) => {
+            return Promise.all([values[0].json(), values[1].json()]).then((valuesNested) => {
+                let userDisplay = new UserDisplay()
+
+                userDisplay.id = valuesNested[0].id
+                userDisplay.account = valuesNested[0].account
+                userDisplay.lastName = valuesNested[0].lastName
+                userDisplay.surName = valuesNested[0].surName
+                userDisplay.email = valuesNested[0].email
+                userDisplay.cardList = valuesNested[1]
 
                 return userDisplay
             })
