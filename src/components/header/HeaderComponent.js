@@ -2,7 +2,7 @@ import { Menu } from "../menu/Menu"
 
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser, selectIsLogged } from '../../core/selectors';
-import { setLogoutUser } from '../../core/actions';
+import { setChatUsers, setLogoutUser } from '../../core/actions';
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -17,6 +17,7 @@ export const HeaderComponent = () => {
 
     const handleLogout = () => {
         dispatch(setLogoutUser())
+        dispatch(setChatUsers([]));
         UserSocket.getInstance().disconnect();
     }
 

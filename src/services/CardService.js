@@ -13,11 +13,11 @@ export class CardService extends Service {
     }
 
     constructor() {
-        // Noter serveur.
-        const domain = "http://localhost:8082"
+        // Notre serveur.
+        //const domain = "http://localhost:8081"
 
         // Serveur de Jacques.
-        // const domain = "https://asi2-backend-market.herokuapp.com"
+        const domain = "https://asi2-backend-market.herokuapp.com"
 
         super(domain)
     }
