@@ -31,7 +31,8 @@ export const ChatTab = (props) => {
     }
 
     const handleMessageReceive = (data) => {
-        dispatch(setChatMessages(messages.push(data)));
+        messages.push(data)
+        dispatch(setChatMessages([...messages]));
         
     }
     

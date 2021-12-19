@@ -1,13 +1,13 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../assets/images/logoCS.jpg';
 import { setChatUsers } from '../../core/actions';
+import { selectUser } from '../../core/selectors';
 import { UserSocket } from '../../sockets/UserSocket';
 
 export const HomePage = () => {
+    const user = useSelector(selectUser);
     const dispatch = useDispatch();
     UserSocket.getInstance().listenUserConnected((data) => {
-        console.log('data')
-        console.log(data)
         dispatch(setChatUsers(data));
     });
     return (

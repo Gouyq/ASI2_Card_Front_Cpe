@@ -16,7 +16,7 @@ export class UserService extends Service {
     
     constructor() {
         // Notre serveur.
-        const domain = "http://localhost:8081/api"
+        const domain = "http://localhost:8086/api"
 
         // Serveur de Jacques.
         //const domain = "https://asi2-backend-market.herokuapp.com"
@@ -25,8 +25,8 @@ export class UserService extends Service {
     }
 
     getAuth(userLogin) {
-        const url = `auth?login=${userLogin.login}&pwd=${userLogin.password}`
-        const method = "POST"
+        const url = `auth/${userLogin.login}/${userLogin.password}`
+        const method = "GET"
 
         return super.request(url, method)
     }

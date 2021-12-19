@@ -12,6 +12,7 @@ export const UPDATE_CHAT_USERS = 'UPDATE_CHAT_USERS'
 export const UPDATE_CHAT_USER_SELECT = 'UPDATE_CHAT_USER_SELECT'
 export const UPDATE_CHAT_MESSAGES = 'UPDATE_CHAT_MESSAGES'
 export const UPDATE_CHAT_MESSAGES_SELECT = 'UPDATE_CHAT_MESSAGES_SELECT'
+export const CHAT_RESET = 'CHAT_RESET'
 
 
 // Users
@@ -88,6 +89,18 @@ export function setChatMessagesSelect(messages) {
     return {
         type: UPDATE_CHAT_MESSAGES_SELECT,
         payload: messages
+    }
+}
+
+export function setChatReset(){
+    return {
+        type: CHAT_RESET,
+        payload: {
+            chatUsers: [],
+            chatUserSelected: null,
+            chatMessages: [],
+            chatMessagesSelected: []
+        }
     }
 }
 

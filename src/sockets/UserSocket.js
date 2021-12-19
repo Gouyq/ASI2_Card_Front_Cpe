@@ -18,7 +18,7 @@ export class UserSocket {
     listenUserConnected(cb) {
         this.socket.listen('getUsers', cb);
     }
-
+    
     emitUserConnected(data) {
         this.socket.emit('updateUser', data);
     }
