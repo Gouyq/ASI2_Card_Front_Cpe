@@ -4,16 +4,18 @@ import storage from 'redux-persist/lib/storage'
 
 import userReducer from './user.reducer'
 import cardReducer from './card.reducer'
+import chatReducer from './chat.reducer'
 
 const rootReducer = combineReducers({
     userState: userReducer,
-    cardState: cardReducer
+    cardState: cardReducer,
+    chatState: chatReducer
 })
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['userState', 'cardState']
+    whitelist: ['userState', 'cardState', 'chatState']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

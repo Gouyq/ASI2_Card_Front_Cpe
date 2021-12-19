@@ -2,12 +2,13 @@ import { Menu } from "../menu/Menu"
 
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser, selectIsLogged } from '../../core/selectors';
-import { setLogoutUser } from '../../core/actions';
+import { setChatReset, setChatUsers, setLogoutUser } from '../../core/actions';
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Stack from 'react-bootstrap/Stack'
 import Button from 'react-bootstrap/Button'
+import { UserSocket } from "../../sockets/UserSocket";
 
 export const HeaderComponent = () => {
     const user = useSelector(selectUser)
@@ -16,6 +17,8 @@ export const HeaderComponent = () => {
 
     const handleLogout = () => {
         dispatch(setLogoutUser())
+        dispatch(setChatReset());
+        UserSocket.getInstance().disconnect();
     }
 
     const titlePage = (

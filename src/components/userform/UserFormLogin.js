@@ -3,10 +3,11 @@ import { UserLogin } from '../../models/UserLogin'
 import { UserService } from '../../services/UserService'
 
 import { useDispatch } from 'react-redux'
-import { setIsLogged, setUser } from '../../core/actions'
+import { setChatUsers, setIsLogged, setUser } from '../../core/actions'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { UserSocket } from '../../sockets/UserSocket'
 
 export const UserFormLogin = (props) => {
 
@@ -24,8 +25,13 @@ export const UserFormLogin = (props) => {
                     if(value !== -1) {
                         UserService.getInstance().refreshUser(value.id).then((responseUser) => {
                             if(responseUser){
+                                console.log('here')
                                 dispatch(setIsLogged(true))
                                 dispatch(setUser(responseUser))
+                                UserSocket.getInstance().listenUserConnected((data) => {
+                                    dispatch(setChatUsers(data));
+                                });
+                                UserSocket.getInstance().emitUserConnected(responseUser);
                             }
                         })
                     } else {

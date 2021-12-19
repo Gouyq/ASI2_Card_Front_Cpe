@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import ToastContainer from 'react-bootstrap/ToastContainer'
 import InputGroup from 'react-bootstrap/InputGroup'
@@ -6,66 +6,86 @@ import Form from 'react-bootstrap/Form'
 import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import { ChatMessage } from './ChatMessage'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectChatMessage, selectChatUser, selectChatUserSelected, selectUser } from '../../core/selectors'
+import { setChatMessages, setChatUserSelect } from '../../core/actions'
+import { ChatSocket } from '../../sockets/ChatSocket'
 
 export const ChatTab = (props) => {
 
     const [messageInputValue, setMessageInputValue] = useState(props.messageInputValue)
-    const [recipient, setRecipient] = useState(props.recipient)
+    let receiverChat = useSelector(selectChatUserSelected);
+    const dispatch = useDispatch()
+
+    let messages = useSelector(selectChatMessage)
+    let usersChat = useSelector(selectChatUser);
+    const userConnected = useSelector(selectUser);
+    usersChat = usersChat.filter(user => user.id !== userConnected.id)
 
     const handleSelectUser = (event) => {
-        setRecipient(event.target.value)
+        dispatch(setChatUserSelect(usersChat.find(user => user.id === parseInt(event.target.value))))
     }
 
     const handleChangeMessage = (event) => {
         setMessageInputValue(event.target.value)
     }
 
+    const handleMessageReceive = (data) => {
+        messages.push(data)
+        dispatch(setChatMessages([...messages]));
+        
+    }
+    
+    useEffect(() => {
+        ChatSocket.getInstance().listenMessage(handleMessageReceive);
+    },[])
+
+
+    
+
     const handleSend = () => {
-        // TODO - Ici, version en dur.
-        console.log('Recipient: ' + recipient + ' | Message: ' + messageInputValue)
+        if(receiverChat){
+            let localMessages = []
 
-        let localMessages = []
+            if(messages != undefined) {
+                localMessages = messages
+            }
 
-        if(messages != undefined) {
-            localMessages = messages
+            console.log("avant push")
+            console.log(messages)
+            var data = { 
+                message: messageInputValue,
+                timestamp: Date.now(),
+                senderId: userConnected.id,
+                receiverId: receiverChat.id
+            }
+            ChatSocket.getInstance().emitMessage(JSON.stringify(data))
+            console.log("receiver");
+            console.log(receiverChat)
+            //setMessages([...localMessages, { name: 'Moi', timestamp: 'Maintenant', body: messageInputValue }])
+
+            console.log("apres push")
+            console.log(messages)
+        }
+        else{
+            console.log("Error, user not selected")
         }
 
-        console.log("avant push")
-        console.log(messages)
-
-        setMessages([...localMessages, { name: 'Moi', timestamp: 'Maintenant', body: messageInputValue }])
-
-        console.log("apres push")
-        console.log(messages)
     }
 
-    // TODO - Récupérer les messages. Ici, les messages sont en dur.
-    const [messages, setMessages] = useState(props.messages)
 
-    // TODO - Ici, liste en dur.
-    const recipients = [
-        {
-            name: 'John'
-        },
-        {
-            name: 'Jane'
-        },
-        {
-            name: 'Jack'
-        }
-    ]
 
     return (
         <div className="m-3" style={{ background: 'white' }}>
             <div className="m-3">
                 <ToastContainer style={{ width: "unset" }}>
-                    { messages !== undefined ? messages.map(message => <ChatMessage message={message} key={message.name} />) : '' }
+                    { messages !== undefined ? messages.map(message => <ChatMessage message={message} key={message.senderId} />) : '' }
                 </ToastContainer>
             </div>
             <InputGroup>
                 <Form.Select onChange={handleSelectUser.bind(this)}>
                     <option>Select user</option>
-                    { recipients.map(recipient => <option value={recipient.name}>{recipient.name}</option>) }
+                    { usersChat.map(user=> <option value={user.id}>{user.surName} {user.lastName}</option>) }
                 </Form.Select>
                 <FormControl placeholder="Message" onChange={handleChangeMessage}>
                 </FormControl>
